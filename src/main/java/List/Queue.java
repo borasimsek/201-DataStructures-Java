@@ -33,4 +33,50 @@ public class Queue {
         }
         return result;
     }
+    /*
+    Write the method void removeOddIndexedElements() which removes only the odd indexed (1, 3, ...) elements.
+    The first element at the front has index 1. You are not allowed to use any other data structure. Use external queue.
+     */
+    public void removeOddIndexedElements() {
+        Queue external = new Queue();
+        Node node = dequeue();
+        external.enqueue(node);
+        int index = 1;
+        while (!isEmpty()) {
+            index++;
+            if (index % 2 == 0) {
+                node = dequeue();
+                external.enqueue(node);
+            } else {
+                dequeue();
+            }
+        }
+        while (!external.isEmpty()) {
+            node = external.dequeue();
+            enqueue(node);
+        }
+    }
+    /*
+    Write the method void removeOddIndexedElements() which removes only the odd indexed (1, 3, ...) elements.
+    The first element at the front has index 1. You are not allowed to use any other data structure. Use external queue.
+     */
+    public void removeOddIndexedElements_Mt_Question() {
+        Queue external = new Queue();
+        Node node = dequeue();
+        external.enqueue(node);
+        int index = 1;
+        while (!isEmpty()) {
+            index++;
+            if (index % 2 == 0) {
+                node = dequeue();
+                external.enqueue(node);
+            } else {
+                dequeue();
+            }
+        }
+        while (!external.isEmpty()) {
+            node = external.dequeue();
+            enqueue(node);
+        }
+    }
 }

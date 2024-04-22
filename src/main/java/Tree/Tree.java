@@ -226,5 +226,22 @@ public class Tree {
         }
         return count;
     }
+    /*
+    Write a non-recursive method int sumofPath(String path) which returns the sum of the values of the nodes in the path.
+    path consists of 0 and 1. 0 means left and 1 means right. The path starts from the root. Use charAt method of String class.
+     */
+    public int sumOfPath(String path) {
+        TreeNode tmp = root;
+        int sum = tmp.getData();
+        for (int i = 0; i < path.length(); i++) {
+            if (path.charAt(i) == '0') {
+                tmp = tmp.getLeft();
+            } else {
+                tmp = tmp.getRight();
+            }
+            sum += tmp.getData();
+        }
+        return sum;
+    }
 
 }
