@@ -164,6 +164,89 @@ public class TreeNode {
         }
         return leftSum + rightSum;
     }
+    /*
+    Write a recursive method in TreeNode class that computes the sum
+     of all keys that are less than X in a binary search tree. You are not
+     allowed to use any tree methods, just attributes, constructors, getters
+     and setters.
+     int sumOfTree(int X)
+     */
+    public int sumOfTree(int X) {
+        int sum = 0;
+        if (data < X) {
+            sum += data;
+        }
+        if (left != null) {
+            sum += left.sumOfTree(X);
+        }
+        if (right != null) {
+            sum += right.sumOfTree(X);
+        }
+        return sum;
+    }
+
+    /*
+    Write a recursive method in TreeNode class that finds the number of
+     duplicate keys in a binary search tree. Assume that if a key is duplicate,
+     it occurs at most twice. Hint: The duplicate of a key is either the
+     maximum number on its left subtree or the minimum number on its
+     right subtree.
+     int numberOfDuplicates()
+     */
+    public int numberOfDuplicates() {
+        int count = 0;
+        if (left != null) {
+            if (left.getData() == data) {
+                count++;
+            }
+            count += left.numberOfDuplicates();
+        }
+        if (right != null) {
+            if (right.getData() == data) {
+                count++;
+            }
+            count += right.numberOfDuplicates();
+        }
+        return count;
+    }
+
+    /*
+    Write a recursive method , which returns the number of nodes in the
+     binary search tree which have value larger than X. Your method should
+     run in O(logN +K) time, where N is total number of nodes and K is
+     the number of nodes which have value larger than X in the tree. Do
+     not use any class or external methods.
+     int higherThanX(int X)
+     */
+    public int higherThanX(int X) {
+        int count = 0;
+        if (data > X) {
+            count++;
+        }
+        if (left != null) {
+            count += left.higherThanX(X);
+        }
+        if (right != null) {
+            count += right.higherThanX(X);
+        }
+        return count;
+    }
+    /*
+     Write a method that computes the products of all keys in a binary
+     search tree.
+     int productOfTree()
+     */
+    public int productOfTree() {
+        int product = data;
+        if (left != null) {
+            product *= left.productOfTree();
+        }
+        if (right != null) {
+            product *= right.productOfTree();
+        }
+        return product;
+    }
+
     public static void main(String[] args) {
         // write me a TDM for average() method
         TreeNode root = new TreeNode(10);

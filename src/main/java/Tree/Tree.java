@@ -1,5 +1,7 @@
 package Tree;
 
+import List.LinkedList;
+
 public class Tree {
 
     final static int LEFT = 0;
@@ -243,5 +245,28 @@ public class Tree {
         }
         return sum;
     }
+    /*
+    Write a non-recursive method in Tree class that returns the depth of
+    the node containing a given data X in a binary search tree. You are not
+    allowed to use any tree methods, just attributes, constructors, getters
+    and setters.
+     */
+    public int depth(int x) {
+        TreeNode tmp = root;
+        int depth = 0;
+        while (tmp != null) {
+            if (tmp.getData() == x) {
+                return depth;
+            }
+            if (tmp.getData() > x) {
+                tmp = tmp.getLeft();
+            } else {
+                tmp = tmp.getRight();
+            }
+            depth++;
+        }
+        return -1;
+    }
+
 
 }
