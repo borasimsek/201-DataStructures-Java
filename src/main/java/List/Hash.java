@@ -240,7 +240,26 @@ public class Hash {
         }
         return min;
     }
-
+    /*
+     Write a function that computes the load factor of an hash table im
+    plemented with an array of linked lists (Separate chaining). The load
+     factor of a hash table is the ratio of the number of elements in the hash
+     table to the table size.
+     double loadFactor()
+     */
+    public double loadFactor() {
+        int elements = 0;
+        for (int i = 0; i < N; i++) {
+            if (table[i].getHead() != null) {
+                Node tmp = table[i].getHead();
+                while (tmp != null) {
+                    elements++;
+                    tmp = tmp.getNext();
+                }
+            }
+        }
+        return (double) elements / N;
+    }
     public static void main(String[] args) {
         int[] array = {1, 4, 2, 5, 2, 4, 3, 4};
         System.out.println(numberOfExtras(array));

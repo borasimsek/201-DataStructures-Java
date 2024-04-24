@@ -207,7 +207,51 @@ public class Queue {
 
         return min;
     }
-
+    /*
+    For linked list implementation, write a function that moves the element
+     currently at the rear of the queue to the front of the queue.
+     void moveToFront()
+     */
+    public void moveToFront() {
+        if (isEmpty() || first == last) {
+            return;
+        }
+        Node previous = null;
+        Node current = first;
+        while (current != last) {
+            previous = current;
+            current = current.getNext();
+        }
+        last.setNext(first);
+        first = last;
+        last = previous;
+        last.setNext(null);
+    }
+        /*
+     Write a function that returns the maximum element in a queue. You are
+     only allowed to use enqueue, dequeue, isEmpty functions. The queue
+     must contain the same elements in the same order after the execution
+     of this function.
+     */
+    public int maximum() {
+        if (isEmpty()) {
+            return Integer.MIN_VALUE;
+        }
+        Queue external = new Queue();
+        int max = Integer.MIN_VALUE;
+        while (!isEmpty()) {
+            Node node = dequeue();
+            external.enqueue(node);
+            if (node.getData() > max) {
+                max = node.getData();
+            }
+        }
+        while (!external.isEmpty()) {
+            Node node = external.dequeue();
+            enqueue(node);
+        }
+        return max;
+    }
 
 
 
