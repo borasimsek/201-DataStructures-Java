@@ -1,5 +1,8 @@
 package Tree;
 
+import List.LinkedList;
+import List.Node;
+
 public class TreeNode {
 
     protected TreeNode left;
@@ -184,7 +187,26 @@ public class TreeNode {
         }
         return sum;
     }
-
+    /*
+    Write a recursive method
+     void pathList(LinkedList l)
+     in the TreeNode class, which returns the keys on the path in the linked
+     list l, where the path is defined by the current parent as follows: If the
+     parent is odd, go left; otherwise go right. Assume that the function is
+     called with an empty linked list for the root node.
+     */
+    public void pathList(LinkedList l) {
+        l.insertFirst(new Node(data));
+        if (data % 2 == 0) {
+            if (right != null) {
+                right.pathList(l);
+            }
+        } else {
+            if (left != null) {
+                left.pathList(l);
+            }
+        }
+    }
     /*
     Write a recursive method in TreeNode class that finds the number of
      duplicate keys in a binary search tree. Assume that if a key is duplicate,
@@ -249,29 +271,27 @@ public class TreeNode {
 
     public static void main(String[] args) {
         // write me a TDM for average() method
-        TreeNode root = new TreeNode(10);
+        TreeNode root = new TreeNode(8);
         TreeNode node1 = new TreeNode(5);
-        TreeNode node2 = new TreeNode(7);
-        TreeNode node3 = new TreeNode(20);
-        TreeNode node4 = new TreeNode(3);
-        TreeNode node5 = new TreeNode(20);
-        TreeNode node6 = new TreeNode(5);
-        TreeNode node7 = new TreeNode(2);
-        TreeNode node8 = new TreeNode(4);
-        TreeNode node9 = new TreeNode(6);
-        TreeNode node10 = new TreeNode(8);
-        TreeNode node11 = new TreeNode(12);
-        TreeNode node12 = new TreeNode(14);
-        TreeNode node13 = new TreeNode(16);
-        TreeNode node14 = new TreeNode(18);
+        TreeNode node2 = new TreeNode(12);
+        TreeNode node3 = new TreeNode(2);
+        TreeNode node4 = new TreeNode(6);
+        TreeNode node5 = new TreeNode(10);
+        TreeNode node6 = new TreeNode(14);
+        TreeNode node7 = new TreeNode(1);
+        TreeNode node8 = new TreeNode(3);
+        TreeNode node9 = new TreeNode(4);
+        TreeNode node10 = new TreeNode(7);
+        TreeNode node11 = new TreeNode(9);
+        TreeNode node12 = new TreeNode(11);
+        TreeNode node13 = new TreeNode(13);
+        TreeNode node14 = new TreeNode(15);
         root.setLeft(node1);
         root.setRight(node2);
         node1.setLeft(node3);
         node1.setRight(node4);
         node2.setLeft(node5);
         node2.setRight(node6);
-        /*
-
         node3.setLeft(node7);
         node3.setRight(node8);
         node4.setLeft(node9);
@@ -280,11 +300,17 @@ public class TreeNode {
         node5.setRight(node12);
         node6.setLeft(node13);
         node6.setRight(node14);
-         */
-        System.out.println(root.average());
+        //System.out.println(root.average());
+        // create me a TDD for pathList() method, create new tree too
+        LinkedList l = new LinkedList();
+        root.pathList(l);
+        System.out.print(l.toString());
 
     }
 
 
-}
+    }
+
+
+
 
